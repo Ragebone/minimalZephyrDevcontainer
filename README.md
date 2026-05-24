@@ -24,9 +24,10 @@ By default without modifying the `.devcontainer/devcontainer.json` this is expec
 
 Just a plain Ubuntu container with all zephyr requirements installed.
 Last step adds sourcing `env_setup.sh` into bash and zsh `.rc` files.
+It is effectively the [getting started](https://docs.zephyrproject.org/latest/develop/getting_started/index.html) guide as a bash script.
 
 This script is supposed to then:
-- create a python .venv inside the workdir
+- create a python .venv inside the zephyrproject directory
 - install all of `wests` needed python packages
 - check for and fetch the zephyrproject if it isn't present already
 - execute ```west install --interactive``` if no SDKs are known to west
@@ -39,10 +40,8 @@ All steps are checked if they are needed so opening another shell should not lea
 - The container is currently priviledged to allow passthrough of USB devices like the rapsberry pi debug probe.
 Would be great to get that working without privileges. 
 
-- The python .venv could and probably should be externalized. Might just be another mount in the .devcontainer/devcontainer.json
-
 - Default build and debug integrations with tasks and such for VSCode would be nice.
 
+- `.devcontainter/devcontainer.json` bind mounts the `zephyrproject` directory and will fail completely if it isn't present. Would be cool if it would be lenient or even create that directory. Or stop and ask to create that directory on the host.
 
-
-
+- `.devcontainter/devcontainer.json` bind mounts the `/dev/bus/usb` directory for accessing hw debuggers like the raspberry pi debug probe. Would be good if this worked on other setups as well.
