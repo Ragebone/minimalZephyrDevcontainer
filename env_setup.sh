@@ -10,16 +10,19 @@ fi
 
 source "$PWD/.venv/bin/activate" 
 
-ZEPHYR_DIRECTORY = $ZEPHYR_BASE/..
-ZEPHYR_WEST_DIRECTORY = $ZEPHYR_DIRECTORY/.west
+ZEPHYR_DIRECTORY=$ZEPHYR_BASE/..
+ZEPHYR_WEST_DIRECTORY=$ZEPHYR_DIRECTORY/.west
 
-if [ ! -d $ZEPHYR_WEST_DIRECTORY ]; then
+if [ ! -d "$ZEPHYR_WEST_DIRECTORY" ]; then
   echo "Zephyr is not setup yet; running west init and update"
-  west init $ZEPHYR_DIRECTORY
+  west init "$ZEPHYR_DIRECTORY"
   if [ ! -f "$ZEPHYR_WEST_DIRECTORY/config" ]; then
     echo "west config is missing, something went seriously wrong"
     return 0
   fi
+
+  echo "updating west, packages and calling zephyr-export"
+  
   west update
   west packages pip --install
   west zephyr-export
