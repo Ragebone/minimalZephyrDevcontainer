@@ -1,23 +1,31 @@
 #!/bin/bash
 
-if [ ! -d "$PWD/.venv" ]; then
-  python3 -m venv $PWD/.venv
+WORK_DIR=$HOME/workdir
+ZEPHYR_DIRECTORY=$HOME/zephyrproject
+WEST_DIRECTORY=$ZEPHYR_DIRECTORY/.west
+VENV_DIR=$ZEPHYR_DIRECTORY/.venv
+ZEPHYR_SDK_INSTALL_DIR=$ZEPHYR_DIRECTORY
+
+if [ ! -d "$VENV_DIR" ]; then
+  echo "installing new venv to $VENV_DIR"
+  python3 -m venv "$VENV_DIR"
 fi
 
-if [ ! -d "$PWD/.venv" ]; then
-  echo "ERROR no venv is setup, not sure why"
+if [ ! -d "$VENV_DIR" ]; then
+  echo "ERROR no venv is setup in $VENV_DIR, not sure why"
 fi
 
-source "$PWD/.venv/bin/activate" 
+source "$VENV_DIR/bin/activate" 
 
-ZEPHYR_DIRECTORY=$ZEPHYR_BASE/..
-ZEPHYR_WEST_DIRECTORY=$ZEPHYR_DIRECTORY/.west
+pip install west
 
-if [ ! -d "$ZEPHYR_WEST_DIRECTORY" ]; then
+echo "installed pip"
+
+if [ ! -d $WEST_DIRECTORY ]; then
   echo "Zephyr is not setup yet; running west init and update"
-  west init "$ZEPHYR_DIRECTORY"
-  if [ ! -f "$ZEPHYR_WEST_DIRECTORY/config" ]; then
-    echo "west config is missing, something went seriously wrong"
+  west init $ZEPHYR_DIRECTORY
+  if [ ! -f $WEST_DIRECTORY/config ]; then
+    echo "west config is missing, something went seriously wrong initializing west"
     return 0
   fi
 
