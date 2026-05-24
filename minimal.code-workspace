@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+  
+	"terminal.integrated.profiles.linux": {
+      "BashWithStartup": {
+        "path": "bash",
+        "args": []
+      }
+    },
+    "terminal.integrated.defaultProfile.linux": "BashWithStartup"
+}

@@ -1,0 +1,33 @@
+{  
+    "name": "minimalZephyrUbuntu",  
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "workspaceFolder": "/home/ubuntu/workdir",  
+    "mounts": [  
+        "source=${localWorkspaceFolder}/../zephyrproject,target=/home/ubuntu/zephyrproject,type=bind,consistency=cached",
+        "source=/dev/bus/usb,target=/dev/bus/usb,type=bind"  
+    ],  
+    "runArgs": [
+        "--privileged"
+    ],
+    "containerEnv": {
+        "ZEPHYR_BASE": "/home/ubuntu/zephyrproject/zephyr",
+        "ZEPHYR_TOOLCHAIN_VARIANT": "zephyr",
+        "ZEPHYR_SDK_INSTALL_DIR": "/home/ubuntu/zephyrproject/sdk"
+    },
+    "customizations": {  
+        "vscode": {  
+            "extensions": [  
+                "llvm-vs-code-extensions.vscode-clangd",
+                "ms-vscode.cpptools",  
+                "ms-vscode.cmake-tools",  
+                "ms-python.python" 
+            ],
+        }  
+    },  
+    
+    "remoteUser": "ubuntu", 
+    // "initializeCommand": "./.devcontainer/init.sh", // permission denied error
+    "postCreateCommand": "./.devcontainer/postCreation.sh"
+}

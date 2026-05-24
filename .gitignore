@@ -1,0 +1,9 @@
+.west/
+.venv/
+build/
+boards/
+bootloader/
+modules/
+tools/
+zephyr
+workdir/
