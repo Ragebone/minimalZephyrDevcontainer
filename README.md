@@ -43,9 +43,10 @@ ctrl + shift + p
 Or some such command in VSCode and VSCodium. 
 
 First time opening will cause west to interactively install the SDK.
-`Optionally` complete those interactive questions.
+
+`3+` complete those interactive questions; when in doubt, say yes to everything.
  
-`4` Add a sample or your own project files and sources to the repo, rename the project, point git to your own origin, just make it nice.
+`4` Add a sample or your own project files and sources to the repo, rename the project, point git to your own remote, just make it nice.
 
 `5` When using this on Nixos and USB passthrough is needed to debug, make sure your user is in group `plugdev` and that `plugdev` has the groupID 46.
 The name doesn't actually matter but it needs to be groupID 46 to match ubuntus group inside the container.  
@@ -77,7 +78,12 @@ Would be great to get that working without privileges.
 - Default build and debug integrations with tasks and such for VSCode would be nice.
 
 - proper code highlighting and such.
+
 - reasonable list of default extensions 
+
+- a script or command that renames the repo, workspace and optionally container as well as changes the git remote
+
+- better checks for for example `west` presence so that `pip install west` and dependencie installations can be skipped.
 
 - `.devcontainter/devcontainer.json` bind mounts the `zephyrproject` directory and will fail completely if it isn't present. Would be cool if it would be lenient or even create that directory. Or stop and ask to create that directory on the host.
 
