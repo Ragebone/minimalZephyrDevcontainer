@@ -89,6 +89,10 @@ Would be great to get that working without privileges.
 
 - `.devcontainter/devcontainer.json` bind mounts the `/dev/bus/usb` directory for accessing hw debuggers like the raspberry pi debug probe. Would be good if this worked on other setups as well.
 
+- Use the initScript to check preconditions like the existance of the zephyrproject folder.
+
+- Expand the script to maybe do the renaming etc of this repo and project, might be a suitable place for that. 
+
 
 ## Other devcontainers and reference material
 
