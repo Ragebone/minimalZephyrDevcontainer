@@ -29,7 +29,5 @@
         }  
     },  
     
-    "remoteUser": "ubuntu", 
-    // "initializeCommand": "./.devcontainer/init.sh", // permission denied error
-    "postCreateCommand": "./.devcontainer/postCreation.sh"
+    "remoteUser": "ubuntu"
 }
