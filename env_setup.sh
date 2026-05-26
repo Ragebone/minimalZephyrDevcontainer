@@ -19,13 +19,15 @@ source "$VENV_DIR/bin/activate"
 
 pip install west
 
-echo "installed pip"
-
-if [ ! -d $WEST_DIRECTORY ]; then
+if [ ! -f $ZEPHYR_DIRECTORY/.didSetupWest ]; then
   echo "Zephyr is not setup yet; running west init and update"
-  west init $ZEPHYR_DIRECTORY
+  
+  if ! west topdir >/dev/null 2>&1; then
+    west init $ZEPHYR_DIRECTORY
+  fi  
+
   if [ ! -f $WEST_DIRECTORY/config ]; then
-    echo "west config is missing, something went seriously wrong initializing west"
+    echo "west config directory is missing, something went wrong initializing west"
     return 0
   fi
 
@@ -34,6 +36,8 @@ if [ ! -d $WEST_DIRECTORY ]; then
   west update
   west packages pip --install
   west zephyr-export
+
+  touch $ZEPHYR_DIRECTORY/.didSetupWest
 fi
 
 if west sdk list >/dev/null 2>&1; then
