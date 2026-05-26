@@ -5,6 +5,7 @@
     },
     "workspaceFolder": "/home/ubuntu/workdir",  
     "mounts": [  
+        "source=${localWorkspaceFolder},target=/home/ubuntu/workdir,type=bind,consistency=cached",
         "source=${localWorkspaceFolder}/../zephyrproject,target=/home/ubuntu/zephyrproject,type=bind,consistency=cached",
         "source=/dev/bus/usb,target=/dev/bus/usb,type=bind"  
     ],  
